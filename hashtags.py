@@ -1,1 +1,1 @@
-{"instagram": ["instagram", "instagood", "like"], "leica_camera": ["leicamp"], "san_francisco": ["bayarea"]}
+{"instagram": ["instagram", "instagood", "like"], "leica_camera": ["leicamp", "leica", "leicam", "leicaphotography", "leicacamera", "leicaphoto"], "san_francisco": ["bayarea"]}

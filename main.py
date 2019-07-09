@@ -26,16 +26,18 @@ def print_tags(tags):
 
 
 def add_category(category):
-    hashtags[category] = []
+    if category not in hashtags.keys():
+        hashtags[category] = []
 
 
 def add_hashtags(category, new_hashtags):
-
-    if category not in hashtags.keys():
+    try:
+        for tag in new_hashtags:
+            if tag not in hashtags[category]:
+                hashtags[category].append(tag)
+    except KeyError:
         add_category(category)
-    for tag in new_hashtags:
-        if tag not in hashtags[category]:
-            hashtags[category].append(tag)
+        add_hashtags(category, new_hashtags)
 
 
 def save_hashtags():
@@ -43,13 +45,18 @@ def save_hashtags():
         file.write(dumps(hashtags))
 
 
-def main():
+def remove_category(category):
+    hashtags.pop(category, None)
 
-    add_category("leica_camera")
-    add_hashtags("leica_camera", ["leicamp"])
-    add_hashtags("san_francisco", ["bayarea"])
-    save_hashtags()
-    print(hashtags)
+
+def remove_hashtags(category, del_hashtags):
+    for hashtag in del_hashtags:
+        if hashtag in hashtags[category]:
+            hashtags[category].remove(hashtag)
+
+
+def main():
+    print_tags(random_hashtags("leica_camera"))
 
 
 if __name__ == "__main__":
