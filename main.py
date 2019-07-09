@@ -8,8 +8,14 @@ def random_hashtags(category, n_samples=5):
     return random_samples
 
 
+def print_tags(tags):
+    """Prints a list of hashtags with hashtag prefix."""
+    for tag in tags:
+        print(f"#{tag}")
+
+
 def main():
-    print(random_hashtags("instagram"))
+    print_tags(random_hashtags("instagram"))
 
 
 if __name__ == "__main__":
