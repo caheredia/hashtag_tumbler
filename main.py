@@ -55,8 +55,20 @@ def remove_hashtags(category, del_hashtags):
             hashtags[category].remove(hashtag)
 
 
+def build_long_list(categories):
+    tags = []
+    for category in set(categories):
+        tags += random_hashtags(category)
+    return tags
+
+
 def main():
-    print_tags(random_hashtags("leica_camera"))
+    add_hashtags(
+        "Visalia", ["Visalia_Ca", "family", "california", "CentralValley", "califas"]
+    )
+    tags = build_long_list(["leica_camera", "Visalia"])
+    save_hashtags()
+    print_tags(tags)
 
 
 if __name__ == "__main__":
