@@ -63,11 +63,7 @@ def build_long_list(categories):
 
 
 def main():
-    add_hashtags(
-        "Visalia", ["Visalia_Ca", "family", "california", "CentralValley", "califas"]
-    )
     tags = build_long_list(["leica_camera", "Visalia"])
-    save_hashtags()
     print_tags(tags)
 
 
