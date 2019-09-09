@@ -1,16 +1,10 @@
 from random import sample
-from json import dumps, load
+from hashtags import tag_dict
 
 HASHTAG_FILE = "hashtags.py"
 
 
-def load_hashtags():
-    with open(HASHTAG_FILE, "r") as file:
-        hashtags = load(file)
-    return hashtags
-
-
-hashtags = load_hashtags()
+hashtags = tag_dict
 
 
 def random_hashtags(category, n_samples=5):
@@ -42,7 +36,7 @@ def add_hashtags(category, new_hashtags):
 
 def save_hashtags():
     with open(HASHTAG_FILE, "w") as file:
-        file.write(dumps(hashtags))
+        file.write(f"tag_dict={hashtags}")
 
 
 def remove_category(category):
@@ -62,9 +56,28 @@ def build_long_list(categories):
     return tags
 
 
+def extract_hashtags_from_file(filename):
+    with open(filename) as file:
+        copied_string = file.read()
+        for item in copied_string.split("#"):
+            print(item.strip())
+
+
 def main():
-    tags = build_long_list(["leica_camera", "Visalia"])
-    print_tags(tags)
+    add_hashtags(
+        "bw",
+        [
+            "bw_photooftheday",
+            "blackandwhitephotography",
+            "bnwphotostories",
+            "bnw_life",
+            "blackandwhitephotography",
+            "35mmfilm",
+            "blackandwhite",
+            "bwphoto",
+        ],
+    )
+    save_hashtags()
 
 
 if __name__ == "__main__":
