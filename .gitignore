@@ -4,7 +4,7 @@ __pycache__/
 *$py.class
 scratchpad.py
 *.DS
-
+*.db
 # C extensions
 *.so
 
