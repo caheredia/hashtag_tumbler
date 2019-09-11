@@ -3,6 +3,12 @@ A python library for saving and tumbling hashtags
 
 `hashtag.py` contains a dictionary, hashtags. The items in hashtags are lists of hashtags, where the names define a user defined hashtag category. 
 
+# With straights sqlite3
+- About 11,000 rows/s can be written if one c.commit() is call made after all inserts. Otherwise, about 200 rows/s.
+
+# With async sqlite3
+- Aysnc writes rates are about 180 rows/s which is on par with regular writes! 
+- with uvloops speeds are faster than straight sql calls, ~220 rows/s.
 
 # uvloop
 uvloop seems to be slightly faster, but needs to be repeatadly tested. 

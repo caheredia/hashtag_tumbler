@@ -30,14 +30,15 @@ start = time.time()
 row = 1000
 for i in range(row):
     add_tag(time_now)
+# conn.commit()
 end = time.time()
 delta = end - start
 print(f"time: {delta}")
 write_rate = int(row / delta)
 print(f"Rows/second: {write_rate}")
 
-# c.execute("SELECT COUNT(*) FROM hashtags")
-# print(c.fetchall())
+c.execute("SELECT COUNT(*) FROM hashtags")
+print(c.fetchall())
 
 conn.close()
 
