@@ -5,6 +5,7 @@ import asyncio
 import time
 import uvloop
 
+uvloop.install()
 r = requests.get("http://localhost:8000/total")
 print("number of rows: ", r.text)
 
@@ -23,7 +24,6 @@ for i in range(rows):
     tasks.append(foo())
 
 start = time.time()
-asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
 loop = asyncio.get_event_loop()
 loop.run_until_complete(asyncio.gather(*tasks))
 loop.close()

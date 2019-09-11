@@ -33,7 +33,7 @@ for i in range(row):
 # conn.commit()
 end = time.time()
 delta = end - start
-print(f"time: {delta}")
+print(f"toatl time: {delta}")
 write_rate = int(row / delta)
 print(f"Rows/second: {write_rate}")
 
