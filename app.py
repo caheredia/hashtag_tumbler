@@ -7,6 +7,7 @@ import asyncio
 import uvloop
 import sys
 
+uvloop.install()
 
 app = Sanic(__name__)
 

@@ -10,10 +10,11 @@ import sqlite3
 r = requests.get("http://localhost:8000/total")
 print("number of rows: ", r.text)
 
+
 time_now = datetime.datetime.now().isoformat()
 
 
-async def add_tag():
+async def foo():
     payload = {"tag": time_now}
     await async_requests.post("http://localhost:8000/tag", json=payload)
 
