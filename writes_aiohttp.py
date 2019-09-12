@@ -23,11 +23,8 @@ def save_rate(method, write_rate):
     conn.close()
 
 
-payload = {"tag": time_now}
-
-
-async def fetch(session, url,json=None):
-    async with session.post(url, json=payload) as response:
+async def curl(session, url, method="GET", json=None):
+    async with session.request(method, url, json=json) as response:
         return await response.text()
 
 
@@ -39,7 +36,8 @@ async def main():
             tasks = []
             start = time.time()
             for i in range(rows):
-                tasks.append(fetch(session, url))
+                payload = {"tag": time_now}
+                tasks.append(curl(session, url, "POST", json=payload))
             await asyncio.gather(*tasks)
             end = time.time()
             delta = end - start
