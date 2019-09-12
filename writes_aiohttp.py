@@ -44,13 +44,13 @@ async def main():
             print(f"total time: {delta}")
             write_rate = int(rows / delta)
             print(f"Rows/second: {write_rate}")
-            save_rate(method="aiohttp_uvloop", write_rate=write_rate)
+            save_rate(method="aiohttp_sanic_uvloop", write_rate=write_rate)
 
 
 if __name__ == "__main__":
     r = requests.get("http://localhost:8000/total")
     print("number of rows: ", r.text)
-    uvloop.install()
+    # uvloop.install()
     asyncio.run(main())
 
     r = requests.get("http://localhost:8000/total")

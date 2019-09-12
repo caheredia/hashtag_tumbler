@@ -49,7 +49,7 @@ def main():
             write_rate = calculate_write_rate(rows)
             save_rate(method=method, write_rate=write_rate)
 
-    multiple_runs(method="sql", rows=100, runs=100)
+    multiple_runs(method="sql", rows=100, runs=10)
 
     # print final row count
     c.execute("SELECT COUNT(*) FROM hashtags")

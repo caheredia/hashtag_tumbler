@@ -14,7 +14,7 @@ print("number of rows: ", r.text)
 time_now = datetime.datetime.now().isoformat()
 
 
-async def foo():
+async def add_tag():
     payload = {"tag": time_now}
     await async_requests.post("http://localhost:8000/tag", json=payload)
 
@@ -41,7 +41,7 @@ for i in range(runs):
     tasks = []
     start = time.time()
     for i in range(rows):
-        tasks.append(add_tag()) 
+        tasks.append(add_tag())
     uvloop.install()
     asyncio.run(bulk_calls(tasks))
     end = time.time()
