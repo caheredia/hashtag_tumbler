@@ -17,8 +17,10 @@ async def add_tag():
     payload = {"tag": time_now}
     await async_requests.post("http://localhost:8000/tag", json=payload)
 
+
 async def bulk_calls(tasks):
     await asyncio.gather(*tasks)
+
 
 def save_rate(method, write_rate):
     """Save rates to rate table."""
@@ -31,7 +33,8 @@ def save_rate(method, write_rate):
     conn.commit()
     conn.close()
 
-runs = 100
+
+runs = 10
 rows = 100
 for i in range(runs):
     tasks = []
@@ -43,6 +46,7 @@ for i in range(runs):
     end = time.time()
     delta = end - start
     print(f"total time: {delta}")
+
     write_rate = int(rows / delta)
     print(f"Rows/second: {write_rate}")
-    save_rate(method='async_uvloop', write_rate=write_rate)
+    # save_rate(method="async", write_rate=write_rate)
