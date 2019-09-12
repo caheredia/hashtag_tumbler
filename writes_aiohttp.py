@@ -23,8 +23,10 @@ def save_rate(method, write_rate):
     conn.close()
 
 
-async def fetch(session, url):
-    payload = {"tag": time_now}
+payload = {"tag": time_now}
+
+
+async def fetch(session, url,json=None):
     async with session.post(url, json=payload) as response:
         return await response.text()
 
@@ -35,9 +37,9 @@ async def main():
         rows = 100
         for i in range(runs):
             tasks = []
+            start = time.time()
             for i in range(rows):
                 tasks.append(fetch(session, url))
-            start = time.time()
             await asyncio.gather(*tasks)
             end = time.time()
             delta = end - start

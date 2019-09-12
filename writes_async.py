@@ -38,9 +38,9 @@ runs = 10
 rows = 100
 for i in range(runs):
     tasks = []
-    for i in range(rows):
-        tasks.append(add_tag())
     start = time.time()
+    for i in range(rows):
+        tasks.append(add_tag()) 
     uvloop.install()
     asyncio.run(bulk_calls(tasks))
     end = time.time()
@@ -49,4 +49,4 @@ for i in range(runs):
 
     write_rate = int(rows / delta)
     print(f"Rows/second: {write_rate}")
-    # save_rate(method="async", write_rate=write_rate)
+    save_rate(method="async_uvloop", write_rate=write_rate)

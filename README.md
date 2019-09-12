@@ -17,20 +17,8 @@ uvloop seems to be slightly faster, but needs to be repeatadly tested.
 - running the requests with access_log = False seems speed things up a bit, probably because Sanic doesn't need to print to std out. 
 
 # aiohttp
-- Is the fastest implementation so far! However, it has some subtleties. For instance it requires a session when making requests, whcih is easist accomplished with a context manager. Also this code 
-```
-async def fetch(session, url):
-    payload = {"tag": time_now}
-    async with session.post(url, json=payload) as response:
-        return await response.text()
-```
-runs faster than this 
-```
-async def fetch(session, url):
-    payload = {"tag": time_now}
-    async with session.request('POST',url, json=payload) as response:
-        return await response.text()
-```
+- Is the fastest implementation so far! It's faster than the native sqlite python code. 
+- However, it has some subtleties. For instance it requires a session when making requests, which is easily accomplished with a context manager.
 
 # Todo 
 - write an abstracted request funcion that can be called from 3 three different apps:
