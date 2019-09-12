@@ -12,3 +12,4 @@ GROUP BY method
 """
 )
 print(c.fetchall())
+c.close()

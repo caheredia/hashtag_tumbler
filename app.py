@@ -45,4 +45,5 @@ async def post(request):
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=8000, debug=True, workers=2)
+    uvloop.install()
+    app.run(host="0.0.0.0", port=8000, debug=False, access_log=False, workers=2)
