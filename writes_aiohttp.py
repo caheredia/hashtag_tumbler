@@ -50,9 +50,8 @@ async def main():
 if __name__ == "__main__":
     r = requests.get("http://localhost:8000/total")
     print("number of rows: ", r.text)
-    # uvloop.install()
+    uvloop.install()
     asyncio.run(main())
-
     r = requests.get("http://localhost:8000/total")
     print("number of rows: ", r.text)
 
