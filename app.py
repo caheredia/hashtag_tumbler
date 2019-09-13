@@ -1,13 +1,7 @@
 from sanic import Sanic
 from sanic.response import text
-import sqlite3
 import aiosqlite
-from signal import signal, SIGINT
-import asyncio
-import uvloop
-import sys
 
-uvloop.install()
 
 app = Sanic(__name__)
 
@@ -45,5 +39,4 @@ async def post(request):
 
 
 if __name__ == "__main__":
-    uvloop.install()
     app.run(host="0.0.0.0", port=8000, debug=False, access_log=False, workers=2)
