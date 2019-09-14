@@ -41,14 +41,13 @@ async def post(request):
 @app.route("/save", methods=["POST"])
 async def save_rate(request):
     """Save rates to rate table."""
-    write_method = request.json["write_method"]
-    write_rate = request.json["rate"]
-    db.execute(
-        "INSERT INTO rates VALUES (:method,:rate)",
-        {"method": write_method, "rate": write_rate},
+    method = request.json["method"]
+    rate = request.json["rate"]
+    await db.execute(
+        "INSERT INTO rates VALUES (:method,:rate)", {"method": method, "rate": rate}
     )
     await db.commit()
-    return json({"saved"}, status=201)
+    return json({"method": method, "rate": rate}, status=201)
 
 
 if __name__ == "__main__":

@@ -5,6 +5,7 @@ import uvloop
 
 total_url = "http://localhost:8000/total"
 tag_url = "http://localhost:8000/tag"
+save_url = "http://localhost:8000/save"
 
 
 async def curl(session, url, method="GET", json=None):
@@ -15,12 +16,12 @@ async def curl(session, url, method="GET", json=None):
 async def main():
     async with aiohttp.ClientSession() as session:
 
-        r = await curl(session, total_url, "GET")
+        r = await curl(session, total_url + "/rates", "GET")
         print(r["total"])
-        payload = {"tag": "leica"}
-        tag = await curl(session, tag_url, "POST", json=payload)
-        print(tag)
-        r = await curl(session, total_url, "GET")
+        payload = {"method": "test", "rate": 1}
+        save = await curl(session, save_url, "POST", json=payload)
+        print(save)
+        r = await curl(session, total_url + "/rates", "GET")
         print(r["total"])
 
 
