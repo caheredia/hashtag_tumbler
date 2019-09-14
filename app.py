@@ -24,7 +24,7 @@ async def post(request):
     cursor = await db.execute("SELECT COUNT(*) FROM hashtags")
     rows = await cursor.fetchall()
     await cursor.close()
-    return json(rows[0], status=200)
+    return json({"total": rows[0][0]}, status=200)
 
 
 @app.route("/tag", methods=["POST"])
@@ -35,7 +35,7 @@ async def post(request):
         {"user": "xristian", "category": "leica", "tag": tag},
     )
     await db.commit()
-    return text("success")
+    return json({"saved": tag}, status=201)
 
 
 @app.route("/save", methods=["POST"])
