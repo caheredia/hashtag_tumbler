@@ -19,9 +19,9 @@ async def after_stop(app, loop):
     await db.close()
 
 
-@app.route("/total", methods=["GET"])
-async def post(request):
-    cursor = await db.execute("SELECT COUNT(*) FROM hashtags")
+@app.route("/total/<table>", methods=["GET"])
+async def post(request, table):
+    cursor = await db.execute(f"SELECT COUNT(*) FROM {table}")
     rows = await cursor.fetchall()
     await cursor.close()
     return json({"total": rows[0][0]}, status=200)

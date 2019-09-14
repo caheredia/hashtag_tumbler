@@ -2,17 +2,18 @@ from app import app
 
 total_url = "http://localhost:8000/total"
 
+tables = ['/hashtags', '/rates']
 
 def test_total():
     _, response = app.test_client.get(total_url)
-
     assert response.status == 200
 
 
 def test_total_type():
-    _, response = app.test_client.get(total_url)
-    r = response.json["total"]
-    assert isinstance(r, int)
+    for table in tables:
+        _, response = app.test_client.get(total_url+table)
+        r = response.json["total"]
+        assert isinstance(r, int)
 
 
 save_url = "http://localhost:8000/save"
@@ -48,26 +49,12 @@ def test_tag_response():
 def test_tag_increase():
     """Test that after save absolute number of rows in db increased by 1."""
     # fetch pre total
-    _, pre_response = app.test_client.get(total_url)
+    _, pre_response = app.test_client.get(total_url+'/hashtags')
     total_pre = pre_response.json["total"]
     # add row to database
     payload = {"tag": "test"}
     _, save_response = app.test_client.post(tag_url, json=payload)
     # fetch post total
-    _, post_response = app.test_client.get(total_url)
+    _, post_response = app.test_client.get(total_url+'/hashtags')
     total_post = post_response.json["total"]
     assert total_post == total_pre + 1
-
-
-#
-#
-# app.route("/tag", methods=["POST"])
-# sync def post(request):
-#   tag = request.json["tag"]
-#   await db.execute(
-#       "INSERT INTO hashtags VALUES (:user,:category,:tag)",
-#       {"user": "xristian", "category": "leica", "tag": tag},
-#   )
-#   await db.commit()
-#   return json({"saved": tag})
-#
