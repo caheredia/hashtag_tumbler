@@ -24,7 +24,7 @@ async def post(request):
     cursor = await db.execute("SELECT COUNT(*) FROM hashtags")
     rows = await cursor.fetchall()
     await cursor.close()
-    return json(rows[0])
+    return json(rows[0], status=200)
 
 
 @app.route("/tag", methods=["POST"])
@@ -41,8 +41,8 @@ async def post(request):
 @app.route("/save", methods=["POST"])
 async def save_rate(request):
     """Save rates to rate table."""
-    write_method = request.json()["data"]
-    write_rate = request.json()["data"]
+    write_method = request.json["write_method"]
+    write_rate = request.json["rate"]
     db.execute(
         "INSERT INTO rates VALUES (:method,:rate)",
         {"method": write_method, "rate": write_rate},
