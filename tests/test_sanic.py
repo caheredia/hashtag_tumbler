@@ -33,10 +33,32 @@ def test_save():
 tag_url = "http://localhost:8000/tag"
 
 
-# ef test_tag_status():
-#   payload = {"write_method": "test", "rate": 0}
-#   _, response = app.test_client.post(tag_url, json=payload)
-#   assert response.status == 201
+def test_tag_status():
+    payload = {"tag": "test"}
+    _, response = app.test_client.post(tag_url, json=payload)
+    assert response.status == 201
+
+
+def test_tag_response():
+    payload = {"tag": "test"}
+    _, response = app.test_client.post(tag_url, json=payload)
+    assert response.json["saved"] == "test"
+
+
+def test_tag_increase():
+    """Test that after save absolute number of rows in db increased by 1."""
+    # fetch pre total
+    _, pre_response = app.test_client.get(total_url)
+    total_pre = pre_response.json["total"]
+    # add row to database
+    payload = {"tag": "test"}
+    _, save_response = app.test_client.post(tag_url, json=payload)
+    # fetch post total
+    _, post_response = app.test_client.get(total_url)
+    total_post = post_response.json["total"]
+    assert total_post == total_pre + 1
+
+
 #
 #
 # app.route("/tag", methods=["POST"])
