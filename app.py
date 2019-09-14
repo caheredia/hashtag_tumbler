@@ -1,5 +1,5 @@
 from sanic import Sanic
-from sanic.response import text
+from sanic.response import text, json
 import aiosqlite
 
 
@@ -24,7 +24,7 @@ async def post(request):
     cursor = await db.execute("SELECT COUNT(*) FROM hashtags")
     rows = await cursor.fetchall()
     await cursor.close()
-    return text(rows)
+    return json(rows[0])
 
 
 @app.route("/tag", methods=["POST"])
@@ -41,14 +41,15 @@ async def post(request):
 @app.route("/save", methods=["POST"])
 async def save_rate(request):
     """Save rates to rate table."""
-    write_method = request.json["data"]
-    write_rate = request.json["data"]
+    write_method = request.json()["data"]
+    write_rate = request.json()["data"]
     db.execute(
         "INSERT INTO rates VALUES (:method,:rate)",
         {"method": write_method, "rate": write_rate},
     )
     await db.commit()
+    return json({"saved"}, status=201)
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=8000, debug=False, access_log=False, workers=2)
+    app.run(host="0.0.0.0", port=8000, debug=True)
