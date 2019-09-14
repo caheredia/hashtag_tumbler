@@ -31,14 +31,14 @@ async def main():
         write_rate = int(rows / delta)
         print(f"Rows/second: {write_rate}")
         # save write speeds
-        write_payload = {"method": "async_uvloop", "rate": write_rate}
+        write_payload = {"method": "async", "rate": write_rate}
         await curl(save_url, json=write_payload)
 
 
 if __name__ == "__main__":
     r = requests.get("http://localhost:8000/total/hashtags")
     print("number of rows: ", r.json()["total"])
-    uvloop.install()
+    # uvloop.install()
     asyncio.run(main())
     r = requests.get("http://localhost:8000/total/hashtags")
     print("number of rows: ", r.json()["total"])
