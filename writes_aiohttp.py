@@ -13,7 +13,7 @@ save_url = "http://localhost:8000/save"
 
 async def curl(session, url, method="GET", json=None):
     async with session.request(method, url, json=json) as response:
-        return await response.text()
+        return await response.json()
 
 
 async def main():
