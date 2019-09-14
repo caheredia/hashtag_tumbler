@@ -38,5 +38,17 @@ async def post(request):
     return text("success")
 
 
+@app.route("/save", methods=["POST"])
+async def save_rate(request):
+    """Save rates to rate table."""
+    write_method = request.json["data"]
+    write_rate = request.json["data"]
+    db.execute(
+        "INSERT INTO rates VALUES (:method,:rate)",
+        {"method": write_method, "rate": write_rate},
+    )
+    await db.commit()
+
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8000, debug=False, access_log=False, workers=2)

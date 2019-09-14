@@ -25,5 +25,6 @@ uvloop seems to be slightly faster, but needs to be repeatadly tested.
     - Sanic with async sqlite
     - Sanic with regular blocking sqlite read/write functions
     - Flask with regular sqlite functions. 
+    - Change aio write to async writes
 
 - Create an API that all frameworks can use for timing, writing, and saving. 
