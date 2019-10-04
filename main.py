@@ -1,5 +1,4 @@
 from random import sample
-from hashtags import tag_dict
 
 HASHTAG_FILE = "hashtags.py"
 
