@@ -5,9 +5,8 @@ import datetime
 import requests
 import uvloop
 
-
 time_now = datetime.datetime.now().isoformat()
-url = "http://localhost:8000/tag"
+write_url = "http://localhost:8000/tag"
 save_url = "http://localhost:8000/save"
 
 
@@ -20,12 +19,12 @@ async def main():
     async with aiohttp.ClientSession() as session:
         runs = 10
         rows = 100
-        for i in range(runs):
+        for run in range(runs):
             tasks = []
             start = time.time()
             for i in range(rows):
                 payload = {"tag": time_now}
-                tasks.append(curl(session, url, "POST", json=payload))
+                tasks.append(curl(session, write_url, "POST", json=payload))
             await asyncio.gather(*tasks)
             end = time.time()
             delta = end - start
@@ -44,4 +43,3 @@ if __name__ == "__main__":
     asyncio.run(main())
     r = requests.get("http://localhost:8000/total/hashtags")
     print("number of rows: ", r.json()["total"])
-
