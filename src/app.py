@@ -10,7 +10,7 @@ app.blueprint(database_v1)
 
 @app.listener("before_server_start")
 async def before_start(app, loop):
-    print("SERVER STARTING")
+    print("Starting server")
     global db
     db = await aiosqlite.connect(DATABASE_FILE)
 
