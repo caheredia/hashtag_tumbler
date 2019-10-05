@@ -6,11 +6,19 @@ database_v1.__doc__ = "database REST API"
 
 
 # turn this whole function into an async function that calls by "/themes/all"
-async def get_all_values(db):
+async def get_all_themes(db):
     cursor = await db.execute('SELECT DISTINCT themes FROM hashtags')
     rows = await cursor.fetchall()
     await cursor.close()
 
+    rows = [item[0] for item in rows]
+    return rows
+
+
+async def get_all_groups(db):
+    cursor = await db.execute('SELECT DISTINCT themes FROM hashtags')
+    rows = await cursor.fetchall()
+    await cursor.close()
     rows = [item[0] for item in rows]
     return rows
 
@@ -40,20 +48,41 @@ async def themes(request, method, db):
         List of values
     """
     # get all themes
-    methods = {'all': get_all_values}
+    methods = {'all': get_all}
 
     return json({'data': themes})
 
 
-def get_all(theme=None, group=None, hashtag=None):
-    """returns all values of layer."""
-    layers = [theme, group, hashtag]
+async def get_all_values(db, themes=None, groups=None, hashtags=None):
+    """returns all values of layer.
 
-    if theme is None:
+    Parameters
+    ----------
+    db : aiosqlite object
+        database connection
+    themes : str
+    groups : str
+    hashtags : str
+
+    Returns
+    -------
+    rows: dict
+        dictionary of values
+    """
+
     # return all layers
-    elif group is None:
-    # return all groups for theme
-    elif hashtag is None:
+    if (themes is None) and (groups is None) and (hashtags is None):
+        cursor = await db.execute('SELECT DISTINCT themes FROM hashtags')
+    elif (themes is not None) and (groups is None):
+        cursor = await db.execute(f'SELECT DISTINCT goups FROM hashtags WHERE themes == {themes}')
+    elif (themes is not None) and (groups is not None) and (hashtags is not None):
+        cursor = await db.execute(
+            f'SELECT DISTINCT hashtags FROM hashtags WHERE themes == {themes} and groups == {groups}')
+
+    rows = await cursor.fetchall()
+    await cursor.close()
+    rows = [item[0] for item in rows]
+    return rows
 
 
 # return all tags for groups and theme
