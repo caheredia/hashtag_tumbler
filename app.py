@@ -1,9 +1,10 @@
 from sanic import Sanic
 from sanic.response import text, json
+from sanic import blueprints
 import aiosqlite
-
+from src.blueprints.acp_blueprint import acp_v1
 app = Sanic(__name__)
-
+app.blueprint[acp_v1]
 
 @app.listener("before_server_start")
 async def before_start(app, loop):
