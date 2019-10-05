@@ -2,12 +2,19 @@ from app import app
 
 total_url = "http://localhost:8000/total"
 
-tables = ["/hashtags", "/rates"]
+tables = ["hashtags", "rates"]
 
+
+def test_health():
+    _, response = app.test_client.get('health')
+    assert response.status == 200
+
+def test_connection():
+    assert db.is_open()
 
 def test_total():
     for table in tables:
-        _, response = app.test_client.get(total_url + table)
+        _, response = app.test_client.get(table)
         assert response.status == 200
 
 

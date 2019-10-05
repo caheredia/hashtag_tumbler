@@ -24,6 +24,7 @@ uvloop seems to be slightly faster, but needs to be repeatadly tested.
 - write an abstracted request funcion that can be called from 3 three different apps:
     - Flask with regular sqlite functions. 
 - add hashtags.py to database 
+- Create schema for storing hashags 
 
 - Create an API that all frameworks can use for timing, writing, and saving. 
 

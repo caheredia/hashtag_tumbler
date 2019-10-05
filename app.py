@@ -2,7 +2,6 @@ from sanic import Sanic
 from sanic.response import text, json
 import aiosqlite
 
-
 app = Sanic(__name__)
 
 
@@ -48,6 +47,11 @@ async def save_rate(request):
     )
     await db.commit()
     return json({"method": method, "rate": rate}, status=201)
+
+
+@app.route("/health", methods=["GET"])
+async def health(request):
+    return json({"data": "healthy"}, status=200)
 
 
 if __name__ == "__main__":
