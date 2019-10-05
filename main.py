@@ -1,9 +1,6 @@
 from random import sample
 
-HASHTAG_FILE = "hashtags.py"
-
-
-hashtags = tag_dict
+from src.database.hashtags import data
 
 
 def random_hashtags(category, n_samples=5):
@@ -63,7 +60,17 @@ def extract_hashtags_from_file(filename):
 
 
 def main():
-    add_hashtags(
+    for theme in data:
+        print(theme)
+        for group in data[theme]:
+            print( "\t",group)
+            for hashtag in data[theme][group]:
+                print("\t\t", hashtag)
+
+if __name__ == "__main__":
+    main()
+
+"""    add_hashtags(
         "bw",
         [
             "bw_photooftheday",
@@ -76,8 +83,4 @@ def main():
             "bwphoto",
         ],
     )
-    save_hashtags()
-
-
-if __name__ == "__main__":
-    main()
+    save_hashtags()"""
