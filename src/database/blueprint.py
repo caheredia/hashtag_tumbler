@@ -40,8 +40,7 @@ async def posts(request):
     Returns
     -------
     dict
-        List of available themes
+        blueprint name
     """
-    themes = ['Themes go here ']
 
     return json({'data': database_v1.name})

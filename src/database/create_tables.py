@@ -1,21 +1,15 @@
 import sqlite3
+from src.constants import DATABASE_FILE
 
-conn = sqlite3.connect("hashtag.db")
+conn = sqlite3.connect(DATABASE_FILE)
 
 c = conn.cursor()
 
 c.execute(
     """CREATE TABLE hashtags (
-   user text,
-   category text,
-   tag text
-   )"""
-)
-
-c.execute(
-    """CREATE TABLE rates (
-   method text,
-   rate real
+   themes text,
+   groups text,
+   hashtags text
    )"""
 )
 
