@@ -3,7 +3,7 @@ A python library for saving and tumbling hashtags
 
 `hashtag.py` contains a dictionary, hashtags. The items in hashtags are lists of hashtags, where the names define a user defined hashtag category. 
 
-# With straights sqlite3
+# With straight sqlite3
 - About 11,000 rows/s can be written if one c.commit() is call made after all inserts. Otherwise, about 200 rows/s.
 
 # With async sqlite3
