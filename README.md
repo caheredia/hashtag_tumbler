@@ -1,3 +1,4 @@
+# TODO time finding hashtags in a string with python split and regex compile/group
 # hashtag_tumbler
 A python library for saving and tumbling hashtags 
 
