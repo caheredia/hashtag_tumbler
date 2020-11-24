@@ -8,6 +8,9 @@ authors = ["Your Name <you@example.com>"]
 python = "^3.7"
 jedi_language_server = "^0.21.0"
 ipython = "^7.19.0"
+black = "^20.8b1"
+isort = "^5.6.4"
+flake8 = "^3.8.4"
 
 [tool.poetry.dev-dependencies]
 
