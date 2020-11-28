@@ -3,8 +3,8 @@ import subprocess
 from src.hashtag_data import chicano, film, fuji, leica, sanfrancisco, street
 from src.hashtags import k_random_hashtags, parse_hashtag_string, return_hashtags
 
-hashtags = chicano + film + fuji + leica + sanfrancisco + street
-random_list = k_random_hashtags(hashtags, 28)
+hashtags = chicano + film
+random_list = k_random_hashtags(hashtags, 5)
 data = return_hashtags(random_list)
 
 # copy return data to system clipboard
