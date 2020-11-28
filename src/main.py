@@ -1,12 +1,12 @@
 import subprocess
 
-from src.hashtags import (foo, k_random_hashtags, parse_hashtag_string,
+from src.hashtag_data import chicano, film, fuji, leica, sanfrancisco, street
+from src.hashtags import (k_random_hashtags, parse_hashtag_string,
                           return_hashtags)
 
-parsed_hashtags = parse_hashtag_string(foo)
-random_parsed_set = k_random_hashtags(parsed_hashtags, 28)
-data = return_hashtags(random_parsed_set)
-print(data)
+hashtags = chicano + film + fuji + leica + sanfrancisco + street
+random_list = k_random_hashtags(hashtags, 28)
+data = return_hashtags(random_list)
 
 # copy return data to system clipboard
 subprocess.run("pbcopy", universal_newlines=True, input=data)
