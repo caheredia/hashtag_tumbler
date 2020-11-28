@@ -13,6 +13,5 @@ class TestData(TestCase):
             self.assertListEqual(group, sorted(group))
 
     def test_for_duplicates(self):
-        for group in [chicano, film, fuji, leica, sanfrancisco, street]:
-            # self.assert((group), tuple(set(group)))
-            pass
+        for group in self.groups:
+            self.assertListEqual(sorted(group), sorted(list(set(group))))
