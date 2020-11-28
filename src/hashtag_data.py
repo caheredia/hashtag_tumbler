@@ -1,4 +1,4 @@
-fuji = ["6x9", "analog", "fujigw690", "gw690", "texasleica"]
+fuji = ["6x9", "fujigw690", "gw690", "texasleica"]
 
 film = [
     "analog",
@@ -30,11 +30,12 @@ film = [
     "upgradetofilm",
 ]
 
+mediumformat = ["mediumformat", "mediumformatfilm", "mediumformatfilmphotograhy"]
 
-leica = ["leica", "leicamp"]
 
+leica = ["leica", "leicacamera", "leicamp", "leicaphotography"]
 
-chicano = ["chicano", "latinxartist", "rasquache"]
+chicano = ["chicano", "chicanoart", "latinxartist", "rasquache"]
 
 
 sanfrancisco = ["bayarea", "missiondistrict", "missiondistrictsf", "sanfrancisco"]
