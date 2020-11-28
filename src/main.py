@@ -1,8 +1,7 @@
 import subprocess
 
 from src.hashtag_data import chicano, film, fuji, leica, sanfrancisco, street
-from src.hashtags import (k_random_hashtags, parse_hashtag_string,
-                          return_hashtags)
+from src.hashtags import k_random_hashtags, parse_hashtag_string, return_hashtags
 
 hashtags = chicano + film + fuji + leica + sanfrancisco + street
 random_list = k_random_hashtags(hashtags, 28)

@@ -1,7 +1,14 @@
 from unittest import TestCase
 
-from src.hashtag_data import (chicano, film, fuji, leica, mediumformat,
-                              sanfrancisco, street)
+from src.hashtag_data import (
+    chicano,
+    film,
+    fuji,
+    leica,
+    mediumformat,
+    sanfrancisco,
+    street,
+)
 
 
 class TestData(TestCase):
