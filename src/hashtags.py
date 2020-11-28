@@ -22,5 +22,3 @@ def return_hashtags(hashtag_set: set) -> str:
     hashtag_string = [f"#{tag} " for tag in hashtag_set]
 
     return "".join(hashtag_string)
-
-
